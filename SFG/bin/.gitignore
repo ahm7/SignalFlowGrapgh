@@ -1,4 +1,3 @@
-/Edges.class
-/GUI.class
-/Node.class
-/findingLoops.class
+/gui/
+/controller/
+/model/
