@@ -1,3 +1,4 @@
+import model.Node;
 
 public class Edges {
 	
