@@ -7,27 +7,28 @@ public class findingLoops {
 
 	
 	
-	private Stack<Child> TraceTube= new Stack<>();
+	private Stack<Node> TraceTube= new Stack<>();
 	private ArrayList<Node>nodes;
 	private ArrayList<Edges>edges;
-	private ArrayList<Loop>loops;
+	private ArrayList<Loop>loops= new ArrayList<>();
 	private int currentRow=0;
 	
 	public  findingLoops(ArrayList<Node>nodes,ArrayList<Edges>edges) {
 		
 		this.nodes=nodes;
 		this.edges=edges;
-		
+		fillChildrens();
+		Trace(nodes.get(0));
       // TODO Auto-generated constructor stub
 	}
 	
-	private ArrayList<ArrayList<Child>> childrens = new ArrayList<>();
+	private ArrayList<ArrayList<Node>> childrens = new ArrayList<>();
 	
 	
  private void fillChildrens(){
 		
 for(int i=0;i<this.nodes.size();i++){
-	ArrayList<Child> temp = new ArrayList<>();
+	ArrayList<Node> temp = new ArrayList<>();
 	childrens.add(temp);
 }
 
@@ -35,19 +36,82 @@ for(int i=0;i<this.edges.size();i++){
 	int positionofFirstNode= edges.get(i).getFirstNode().getId();
 	int positionofSecondNode= edges.get(i).getSecondNode().getId();
 	int size = childrens.get(positionofFirstNode).size();
-	Child temp = new Child(size,nodes.get(positionofSecondNode));
-	childrens.get(positionofFirstNode).add(temp);
+	//Child temp = new Child(size,nodes.get(positionofSecondNode));
+	childrens.get(positionofFirstNode).add(nodes.get(positionofSecondNode));
 }
 
 
 		
 	}
  
+
+
+
+ private void Trace (Node e ){
+	 //`System.out.println(e.getId()+1);
+	// System.out.println(e.getId());
+ArrayList<Node> theloop = new ArrayList();
+int size = TraceTube.size();
+//System.out.println(size);
+	 if ( TraceTube.contains(e) ) {
+		 
+	   Stack <Node>temp1 =  new Stack<>();
+	   Stack <Node>temp =  new Stack<>();
+	   for(int i=0;i<size;i++){
+		   temp1.push(TraceTube.pop());
+	   }
+	   for(int i=0;i<size;i++){
+		   Node test = temp1.pop();
+		   temp.push(test);
+		   TraceTube.push(test);
+	   }
+	   
+
+	  
+	   theloop.add(e);
+	   for( int I=0 ; I< size; I++){ 
+		//   System.out.println(temp.peek().getId()+" "+e.getId());
+	 if(temp.peek().getId() == e.getId()){
+	   theloop.add(temp.pop());
+	   Loop myLoop = new  Loop(theloop);
+	   loops.add(myLoop);
+	  // System.out.println();
+	  
+	 break;
+
+	 }
+	 theloop.add(temp.pop()); 
+	 
+	 }}
+	 else{
+		 TraceTube.push(e);
+		 ArrayList<Node> temp =childrens.get(e.getId());
+	 for(int i=0; i< childrens.get(e.getId()).size();i++){
+		 for(int ii=0;ii<size+1;ii++){
+			 if(i>0 &&TraceTube.peek().getId()!= e.getId()){
+				 TraceTube.pop();
+			 }
+		 }
+	 Trace(temp.get(i));
+
+	 }
+
+
+
+	 }
+
+
+	 }
+
  
- private void searchForLoops(Child child){
+public ArrayList<Loop> getLoops(){
+	return loops;
+}
+}
+ /*private void searchForLoops(Child child){
 	// TraceTube.push(node);
 	 Node node = child.node;
-	 /* if we get a loop */
+	  if we get a loop 
 	 if (node.getId()==this.currentRow){
 		 
 		Stack<Child> temp = TraceTube;
@@ -67,9 +131,9 @@ for(int i=0;i<this.edges.size();i++){
 		 
 		 
 	 }
-	 /*end of the condition of getting a loop */
+	 end of the condition of getting a loop 
 	 
-	 /* check for dublication*/
+	  check for dublication
 	 else  if(TraceTube.contains(child)){
 		 int stop = 0;
 		 while (stop!=1){
@@ -89,7 +153,7 @@ for(int i=0;i<this.edges.size();i++){
 		 }
 	 }
 	
-	/* end of the check */
+	 end of the check 
 	 else if (child.node.getId()==childrens.size()){
 		 this.currentRow++;
 		 if(currentRow< childrens.size()){
@@ -102,7 +166,7 @@ for(int i=0;i<this.edges.size();i++){
  }
  
  
-/*condition of end*/
+condition of end
 	
 
-}
+}*/
