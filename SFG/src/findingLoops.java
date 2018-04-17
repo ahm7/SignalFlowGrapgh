@@ -11,6 +11,9 @@ public class findingLoops {
 	private ArrayList<Node>nodes;
 	private ArrayList<Edges>edges;
 	private ArrayList<Loop>loops= new ArrayList<>();
+	private ArrayList<ArrayList<Edges>>edgesOfLoops=new ArrayList<>();
+	private ArrayList<ArrayList<Edges>>finaledgesOfLoops=new ArrayList<>();
+
 	private int currentRow=0;
 	
 	public  findingLoops(ArrayList<Node>nodes,ArrayList<Edges>edges) {
@@ -19,6 +22,7 @@ public class findingLoops {
 		this.edges=edges;
 		fillChildrens();
 		Trace(nodes.get(0));
+		findingLoopsEdges();
       // TODO Auto-generated constructor stub
 	}
 	
@@ -75,6 +79,8 @@ int size = TraceTube.size();
 	   theloop.add(temp.pop());
 	   Loop myLoop = new  Loop(theloop);
 	   loops.add(myLoop);
+	   ArrayList<Edges> fill = new ArrayList<>();
+	   edgesOfLoops.add(fill);
 	  // System.out.println();
 	  
 	 break;
@@ -107,6 +113,81 @@ int size = TraceTube.size();
 public ArrayList<Loop> getLoops(){
 	return loops;
 }
+
+private void findingLoopsEdges(){
+	
+	
+	for(int i=0;i<loops.size();i++){
+		
+		for(int j=loops.get(i).getLoop().size()-1;j>0;j--){
+			
+		
+			for(int y=0;y<edges.size();y++){
+				
+				if(edges.get(y).getFirstNode()==loops.get(i).getLoop().get(j) &&edges.get(y).getSecondNode()==loops.get(i).getLoop().get(j-1) ){
+					edgesOfLoops.get(i).add(edges.get(y));
+					System.out.print(edges.get(y)+" ");
+					
+				}
+				
+			}
+			
+			
+		}
+		System.out.println(" ");
+		
+		
+		
+	}
+	
+	
+	
+	
+	for(int u=0;u<edgesOfLoops.size()-1;u++){
+		int t =0;
+		for(int z=u+1;z<edgesOfLoops.size();z++){
+			
+			if(edgesOfLoops.get(z).size()== edgesOfLoops.get(u).size()){
+				for(int o=0;o<edgesOfLoops.get(u).size();o++){
+					
+					for(int e=0;e<edgesOfLoops.get(z).size();e++){
+						
+						if(edgesOfLoops.get(u).get(o)==edgesOfLoops.get(z).get(e)){
+							t++;
+						}
+						
+					}
+					if(t==edgesOfLoops.get(z).size()){
+						t=-1;
+						break;
+					}
+				}	
+				
+				if(t==-1){
+					edgesOfLoops.get(z).clear();
+				}
+				
+			}
+			
+			
+		}
+		
+		
+		
+		
+	}
+	
+	for(int q=0;q<edgesOfLoops.size();q++){
+		
+		if(edgesOfLoops.get(q).size() != 0){
+			finaledgesOfLoops.add(edgesOfLoops.get(q));
+		}
+	}
+	
+	
+}
+
+
 }
  /*private void searchForLoops(Child child){
 	// TraceTube.push(node);
