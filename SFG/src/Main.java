@@ -47,6 +47,7 @@ public class Main {
 
 		 findingLoops test = new findingLoops(nodes, edges);
 		 loops=test.getLoops();
+		 test.printPaths();
 		 System.out.println(loops.size()+"size");
 		 ArrayList<Node> t = new ArrayList<>();
 		 t=loops.get(1).getLoop();

@@ -11,6 +11,8 @@ public class findingLoops {
 	private ArrayList<Node>nodes;
 	private ArrayList<Edges>edges;
 	private ArrayList<Loop>loops= new ArrayList<>();
+	private ArrayList<path>paths= new ArrayList<>();
+
 	private ArrayList<ArrayList<Edges>>edgesOfLoops=new ArrayList<>();
 	private ArrayList<ArrayList<Edges>>finaledgesOfLoops=new ArrayList<>();
 
@@ -23,6 +25,8 @@ public class findingLoops {
 		fillChildrens();
 		Trace(nodes.get(0));
 		findingLoopsEdges();
+		TraceTube.clear();
+		TracePath(nodes.get(0));
       // TODO Auto-generated constructor stub
 	}
 	
@@ -186,6 +190,63 @@ private void findingLoopsEdges(){
 	
 	
 }
+
+private void TracePath(Node n){
+	if(n.getId()==0){
+		TraceTube.push(n);
+	}
+	int size = TraceTube.size();
+	if(n.getId()== nodes.get(nodes.size()-1).getId()){
+		TraceTube.push(n);
+
+		System.out.println(n.getId()+"isdes");
+		ArrayList<Node> thePath = new ArrayList<>();
+		 for(int i=0; i <size;i++) {
+
+			 thePath.add(TraceTube.pop());
+		 }
+		 for(int i=size-1; i >=0;i--) {
+			 
+         TraceTube.push(thePath.get(i));		 
+}
+		 path myPath = new path(thePath) ;
+		 paths.add(myPath);
+      
+	}
+	else{
+		
+		
+		TraceTube.push(n);
+		for(int i=0;i<childrens.get(n.getId()).size();i++){
+			 for(int ii=0;ii<size+1;ii++){
+				 if(i>0 &&TraceTube.peek().getId()!= n.getId()){
+					 TraceTube.pop();
+				 }
+			 }
+			if(childrens.get(n.getId()).get(i).getId()>n.getId()){
+				System.out.println(n.getId()+1 + " "+(childrens.get(n.getId()).get(i).getId()+1)+" "+ "comparison" );
+				TracePath(childrens.get(n.getId()).get(i));
+			}
+		}
+		
+		
+		
+	}
+	
+	
+}
+
+public void printPaths(){
+	
+	for(int i=0;i<paths.size();i++){
+		for(int j=0;j<paths.get(i).getLoop().size();j++){
+			System.out.print(paths.get(i).getLoop().get(j).getId()+1+" ");
+			
+		}
+		System.out.println( " path "+paths.get(i).getLoop().size());
+	}
+}
+
 
 
 }
