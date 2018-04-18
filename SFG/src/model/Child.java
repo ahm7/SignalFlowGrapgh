@@ -1,4 +1,4 @@
-import model.Node;
+package model;
 
 public class Child {
 	

@@ -1,9 +1,7 @@
 package gui;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Container;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 
@@ -19,6 +17,7 @@ public class Frame  {
 	JPanel toolPanel ;
 	public JButton nodeBtn;
 	public JButton edgeBtn;
+	public JButton calculateBtn;
 	public DrawArea drawArea;
 	public ActionListener actionListener;
 	public MouseListener mouseListener;
@@ -38,6 +37,7 @@ public class Frame  {
 		
 		nodeBtn.addActionListener(actionListener);
 		edgeBtn.addActionListener(actionListener);
+		calculateBtn.addActionListener(actionListener);
 		drawArea.addMouseListener(mouseListener);
 	}
 
@@ -47,8 +47,10 @@ public class Frame  {
 		
 		nodeBtn = new JButton("node");
 		edgeBtn = new JButton("edge");
+		calculateBtn = new JButton("calculate");
 		toolPanel.add(nodeBtn);
 		toolPanel.add(edgeBtn);
+		toolPanel.add(calculateBtn);
 	}
 
 

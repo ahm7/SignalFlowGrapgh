@@ -1,6 +1,5 @@
+package model;
 import java.util.ArrayList;
-
-import model.Node;
 
 public class Main {
 
@@ -8,26 +7,26 @@ public class Main {
 		
 		
   ArrayList<Node>nodes= new ArrayList<>();
-  ArrayList<Edges>edges= new ArrayList<>();
+  ArrayList<Edge>edges= new ArrayList<>();
   ArrayList<Loop>loops=new ArrayList<>();
 	
   for(int i=0;i<8;i++){
 	  Node a = new Node(i,0,0);
 	  nodes.add(a);
   }
-  Edges a = new Edges(nodes.get(0), nodes.get(1), "h");
-  Edges b = new Edges(nodes.get(1), nodes.get(2),"g");
-  Edges c = new Edges(nodes.get(2), nodes.get(3), "h");
-  Edges d = new Edges(nodes.get(3), nodes.get(4),"g");
-  Edges e = new Edges(nodes.get(3), nodes.get(6), "h");
-  Edges f = new Edges(nodes.get(4), nodes.get(5),"g");
-  Edges g = new Edges(nodes.get(5), nodes.get(4), "h");
-  Edges h = new Edges(nodes.get(5), nodes.get(6),"g");
-  Edges i = new Edges(nodes.get(5), nodes.get(7), "h");
-  Edges j = new Edges(nodes.get(6), nodes.get(2),"g");
-  Edges k = new Edges(nodes.get(6), nodes.get(7), "h");
-  Edges l = new Edges(nodes.get(7), nodes.get(1),"g");
-  Edges m = new Edges(nodes.get(7), nodes.get(5),"g");
+  Edge a = new Edge(nodes.get(0), nodes.get(1), "h");
+  Edge b = new Edge(nodes.get(1), nodes.get(2),"g");
+  Edge c = new Edge(nodes.get(2), nodes.get(3), "h");
+  Edge d = new Edge(nodes.get(3), nodes.get(4),"g");
+  Edge e = new Edge(nodes.get(3), nodes.get(6), "h");
+  Edge f = new Edge(nodes.get(4), nodes.get(5),"g");
+  Edge g = new Edge(nodes.get(5), nodes.get(4), "h");
+  Edge h = new Edge(nodes.get(5), nodes.get(6),"g");
+  Edge i = new Edge(nodes.get(5), nodes.get(7), "h");
+  Edge j = new Edge(nodes.get(6), nodes.get(2),"g");
+  Edge k = new Edge(nodes.get(6), nodes.get(7), "h");
+  Edge l = new Edge(nodes.get(7), nodes.get(1),"g");
+  Edge m = new Edge(nodes.get(7), nodes.get(5),"g");
 
 		 edges.add(a);
 		 edges.add(b);
