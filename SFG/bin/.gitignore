@@ -1,3 +1,10 @@
-/gui/
+/Edges.class
+/Node.class
 /controller/
+/findingLoops.class
+/gui/
 /model/
+/Child.class
+/Loop.class
+/Main.class
+/path.class
