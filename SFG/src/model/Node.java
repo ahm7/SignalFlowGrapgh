@@ -14,5 +14,9 @@ public class Node {
 		this.positionY=positionY;
 		
 	}
+	
+	public int getId(){
+		return this.id;
+	}
 
 }

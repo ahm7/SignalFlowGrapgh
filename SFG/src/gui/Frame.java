@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -20,6 +21,7 @@ public class Frame  {
 	public JButton edgeBtn;
 	public DrawArea drawArea;
 	public ActionListener actionListener;
+	public MouseListener mouseListener;
 	Main control;
 	 
 	
@@ -36,6 +38,7 @@ public class Frame  {
 		
 		nodeBtn.addActionListener(actionListener);
 		edgeBtn.addActionListener(actionListener);
+		drawArea.addMouseListener(mouseListener);
 	}
 
 
