@@ -1,7 +1,6 @@
+package model;
 import java.util.ArrayList;
 import java.util.Stack;
-
-import model.Node;
 
 public class findingLoops {
 
@@ -9,16 +8,16 @@ public class findingLoops {
 	
 	private Stack<Node> TraceTube= new Stack<>();
 	private ArrayList<Node>nodes;
-	private ArrayList<Edges>edges;
+	private ArrayList<Edge>edges;
 	private ArrayList<Loop>loops= new ArrayList<>();
 	private ArrayList<path>paths= new ArrayList<>();
 
-	private ArrayList<ArrayList<Edges>>edgesOfLoops=new ArrayList<>();
-	private ArrayList<ArrayList<Edges>>finaledgesOfLoops=new ArrayList<>();
+	private ArrayList<ArrayList<Edge>>edgesOfLoops=new ArrayList<>();
+	private ArrayList<ArrayList<Edge>>finaledgesOfLoops=new ArrayList<>();
 
 	private int currentRow=0;
 	
-	public  findingLoops(ArrayList<Node>nodes,ArrayList<Edges>edges) {
+	public  findingLoops(ArrayList<Node>nodes,ArrayList<Edge>edges) {
 		
 		this.nodes=nodes;
 		this.edges=edges;
@@ -83,7 +82,7 @@ int size = TraceTube.size();
 	   theloop.add(temp.pop());
 	   Loop myLoop = new  Loop(theloop);
 	   loops.add(myLoop);
-	   ArrayList<Edges> fill = new ArrayList<>();
+	   ArrayList<Edge> fill = new ArrayList<>();
 	   edgesOfLoops.add(fill);
 	  // System.out.println();
 	  

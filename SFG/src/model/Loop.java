@@ -1,6 +1,5 @@
+package model;
 import java.util.ArrayList;
-
-import model.Node;
 
 public class Loop {
 	
