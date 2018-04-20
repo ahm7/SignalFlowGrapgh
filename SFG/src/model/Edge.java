@@ -1,5 +1,7 @@
 package model;
 
+import gui.Arrow;
+
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -62,12 +64,12 @@ public class Edge {
 				(firstNode.getPositionX() + secondNode.getPositionX()) / 2,
 				scale, secondNode.getPositionX() + (secondNode.getWidth() / 2),
 				secondNode.getPositionY() + (secondNode.getHeight() / 2));
-		g2.draw(q);
-		g2.setColor(Color.red);
+		//g2.draw(q);
+		//g2.setColor(Color.red);
 		g2.drawString(value, (int) q.getCtrlX(),
 				(int) (q.getCtrlY() + q.getFlatness()));
-		// Arrow.draw(g2, q.getP1(), q.getP2(), new BasicStroke(2),new
-		// BasicStroke(2), 50,q);
+		 Arrow.draw(g2, q.getCtrlPt(), q.getP2(), new BasicStroke(2),new
+		 BasicStroke(2), 25,q);
 
 	}
 
