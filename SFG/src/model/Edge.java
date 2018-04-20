@@ -51,12 +51,10 @@ public class Edge {
 		if (firstNode.getId() < secondNode.getId()) { 
 			scale = (secondNode.getPositionX() - firstNode.getPositionX()) / 2;
 		} else if (firstNode.getId() > secondNode.getId()) {
-			scale = ((secondNode.getPositionX() - firstNode.getPositionX()) / 2) + 300;
+			scale = ((secondNode.getPositionX() - firstNode.getPositionX()) / 2) + 350;
 		}
 		if (scale < 100) {
 			scale = firstNode.getPositionY();
-		} else if (scale > 700) {
-			scale = 300;
 		}
 		g2.setStroke(new BasicStroke(2));
 		q.setCurve(firstNode.getPositionX() + (firstNode.getWidth() / 2),
