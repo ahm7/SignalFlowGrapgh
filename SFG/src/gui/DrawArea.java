@@ -15,8 +15,7 @@ public class DrawArea extends JComponent {
 	private Image image;
 	public DrawArea() {
 		setDoubleBuffered(false);
-	}
-	
+	}	
 	protected void paintComponent(Graphics g) {
 		if (image == null) {		
 			image = createImage(1000, 1000);

@@ -52,7 +52,6 @@ public class Controller {
 		for (Node node : nodesList)
 			System.out.println(node.getId());
 	}
-
 	public void actionOnSelect(MouseEvent e) {
 		if (shape.equals("node")) {
 			Point point = e.getPoint();
