@@ -48,7 +48,7 @@ public class Edge {
 
 		// create new QuadCurve2D.Float
 		QuadCurve2D q = new QuadCurve2D.Float();
-		if (firstNode.getId() < secondNode.getId()) {
+		if (firstNode.getId() < secondNode.getId()) { 
 			scale = (secondNode.getPositionX() - firstNode.getPositionX()) / 2;
 		} else if (firstNode.getId() > secondNode.getId()) {
 			scale = ((secondNode.getPositionX() - firstNode.getPositionX()) / 2) + 300;
@@ -67,7 +67,7 @@ public class Edge {
 		//g2.draw(q);
 		//g2.setColor(Color.red);
 		g2.drawString(value, (int) q.getCtrlX(),
-				(int) (q.getCtrlY() + q.getFlatness()));
+				(int) (q.getBounds().getCenterY()-5));
 		 Arrow.draw(g2, q.getCtrlPt(), q.getP2(), new BasicStroke(2),new
 		 BasicStroke(2), 25,q);
 
