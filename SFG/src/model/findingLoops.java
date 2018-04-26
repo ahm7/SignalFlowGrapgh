@@ -116,6 +116,9 @@ int size = TraceTube.size();
 public ArrayList<Loop> getLoops(){
 	return loops;
 }
+public ArrayList<path> getPaths(){
+	return paths;
+}
 
 private void findingLoopsEdges(){
 	
@@ -129,7 +132,7 @@ private void findingLoopsEdges(){
 				
 				if(edges.get(y).getFirstNode()==loops.get(i).getLoop().get(j) &&edges.get(y).getSecondNode()==loops.get(i).getLoop().get(j-1) ){
 					edgesOfLoops.get(i).add(edges.get(y));
-					System.out.print(edges.get(y)+" ");
+					//System.out.print(edges.get(y)+" ");
 					
 				}
 				
@@ -137,7 +140,7 @@ private void findingLoopsEdges(){
 			
 			
 		}
-		System.out.println(" ");
+		//System.out.println(" ");
 		
 		
 		
@@ -168,6 +171,7 @@ private void findingLoopsEdges(){
 				
 				if(t==-1){
 					edgesOfLoops.get(z).clear();
+	//loops.remove(z);
 				}
 				
 			}
@@ -186,9 +190,21 @@ private void findingLoopsEdges(){
 			finaledgesOfLoops.add(edgesOfLoops.get(q));
 		}
 	}
+	//System.out.println(finaledgesOfLoops.size()+" edges");
+	int i=0;
+for(int q=0;q<edgesOfLoops.size();q++){
+		
+		if(edgesOfLoops.get(q).size() == 0){
+		//	loops.remove(q-i);
+		}
+		i++;
+	}
 	
+	
+
 	
 }
+
 
 private void TracePath(Node n){
 	if(n.getId()==0){
@@ -198,7 +214,7 @@ private void TracePath(Node n){
 	if(n.getId()== nodes.get(nodes.size()-1).getId()){
 		TraceTube.push(n);
 
-		System.out.println(n.getId()+"isdes");
+		//System.out.println(n.getId()+"isdes");
 		ArrayList<Node> thePath = new ArrayList<>();
 		 for(int i=0; i <size;i++) {
 
@@ -223,7 +239,7 @@ private void TracePath(Node n){
 				 }
 			 }
 			if(childrens.get(n.getId()).get(i).getId()>n.getId()){
-				System.out.println(n.getId()+1 + " "+(childrens.get(n.getId()).get(i).getId()+1)+" "+ "comparison" );
+				//System.out.println(n.getId()+1 + " "+(childrens.get(n.getId()).get(i).getId()+1)+" "+ "comparison" );
 				TracePath(childrens.get(n.getId()).get(i));
 			}
 		}
@@ -237,13 +253,7 @@ private void TracePath(Node n){
 
 public void printPaths(){
 	
-	for(int i=0;i<paths.size();i++){
-		for(int j=0;j<paths.get(i).getLoop().size();j++){
-			System.out.print(paths.get(i).getLoop().get(j).getId()+1+" ");
-			
-		}
-		System.out.println( " path "+paths.get(i).getLoop().size());
-	}
+	
 }
 
 

@@ -6,27 +6,31 @@ public class Main {
 	public static void main(String[] args) {
 		
 		
+		
+		
+		
+
   ArrayList<Node>nodes= new ArrayList<>();
   ArrayList<Edge>edges= new ArrayList<>();
   ArrayList<Loop>loops=new ArrayList<>();
+  ArrayList<path> paths = new ArrayList<>();
 	
   for(int i=0;i<8;i++){
 	  Node a = new Node(i,0,0);
 	  nodes.add(a);
   }
   Edge a = new Edge(nodes.get(0), nodes.get(1), "h");
-  Edge b = new Edge(nodes.get(1), nodes.get(2),"g");
-  Edge c = new Edge(nodes.get(2), nodes.get(3), "h");
-  Edge d = new Edge(nodes.get(3), nodes.get(4),"g");
-  Edge e = new Edge(nodes.get(3), nodes.get(6), "h");
-  Edge f = new Edge(nodes.get(4), nodes.get(5),"g");
-  Edge g = new Edge(nodes.get(5), nodes.get(4), "h");
-  Edge h = new Edge(nodes.get(5), nodes.get(6),"g");
-  Edge i = new Edge(nodes.get(5), nodes.get(7), "h");
-  Edge j = new Edge(nodes.get(6), nodes.get(2),"g");
-  Edge k = new Edge(nodes.get(6), nodes.get(7), "h");
-  Edge l = new Edge(nodes.get(7), nodes.get(1),"g");
-  Edge m = new Edge(nodes.get(7), nodes.get(5),"g");
+  Edge b = new Edge(nodes.get(1), nodes.get(0),"g");
+  Edge c = new Edge(nodes.get(1), nodes.get(2), "h");
+  Edge d = new Edge(nodes.get(2), nodes.get(3),"g");
+  Edge e = new Edge(nodes.get(3), nodes.get(2), "h");
+  Edge f = new Edge(nodes.get(3), nodes.get(4),"g");
+  Edge g = new Edge(nodes.get(4), nodes.get(5), "h");
+  Edge h = new Edge(nodes.get(5), nodes.get(4),"g");
+  Edge i = new Edge(nodes.get(5), nodes.get(6), "h");
+  Edge j = new Edge(nodes.get(6), nodes.get(7),"g");
+  Edge k = new Edge(nodes.get(7), nodes.get(6), "h");
+ 
 
 		 edges.add(a);
 		 edges.add(b);
@@ -39,14 +43,35 @@ public class Main {
 		 edges.add(i);
 		edges.add(j);
 		 edges.add(k);
-		 edges.add(l);
-		 edges.add(m);
+		
 		 
-		 
-
 		 findingLoops test = new findingLoops(nodes, edges);
 		 loops=test.getLoops();
-		 test.printPaths();
+		 paths = test.getPaths();
+		 
+		 for(int it=0; it < paths.size();it++){
+			 for(int ff = 0 ; ff<paths.get(it).getpath().size();ff++){
+				 
+				 System.out.print(paths.get(it).getpath().get(ff).getId());
+			 }
+			 System.out.println("path");
+		 }
+		/* for(int ii=0;ii<loops.size();ii++){
+			 for(int kj=0;kj<loops.get(ii).getLoop().size();kj++){
+				 
+				 System.out.print(loops.get(ii).getLoop().get(kj).getId()+" ");
+			 }
+			 System.out.println(" ");
+		 }
+		 */
+		 NonTouchingLoops q = new NonTouchingLoops(loops);
+		 ArrayList<ArrayList<ArrayList<Loop>>> t = new  ArrayList<>();
+		 t=q.nonTouching;
+		 System.out.println(q.nonTouching.size()+" kk" + q.nonTouching.get(2).size());
+		 	
+
+		 	}
+		 /*test.printPaths();
 		 System.out.println(loops.size()+"size");
 		 ArrayList<Node> t = new ArrayList<>();
 		 t=loops.get(1).getLoop();
@@ -62,10 +87,10 @@ public class Main {
 			
 		}
 		 
-		 
+	*/	 
 		 
 		
-	}
+	
 	
 	
 }

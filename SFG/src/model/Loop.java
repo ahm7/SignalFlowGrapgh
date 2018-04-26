@@ -15,4 +15,6 @@ public class Loop {
 	public ArrayList<Node> getLoop(){
 		return this.loop;
 	}
+	
+	
 }

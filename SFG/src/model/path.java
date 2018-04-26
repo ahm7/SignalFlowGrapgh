@@ -12,7 +12,9 @@ public class path {
 	}
 
 	
-	public ArrayList<Node> getLoop(){
+	public ArrayList<Node> getpath(){
 		return this.path;
 	}
+	
+	
 }
