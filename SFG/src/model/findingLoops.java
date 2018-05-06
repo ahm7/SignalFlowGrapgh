@@ -9,7 +9,7 @@ public class findingLoops {
 	private Stack<Node> TraceTube = new Stack<>();
 	private ArrayList<Node>nodes;
 	private ArrayList<Edge>edges;
-	private ArrayList<Loop>loops= new ArrayList<>();
+	private ArrayList<Loop>loops;
 	private ArrayList<path>paths= new ArrayList<>();
 	private ArrayList<ArrayList<Edge>>edgesOfLoops=new ArrayList<>();
 	private ArrayList<ArrayList<Edge>>finaledgesOfLoops=new ArrayList<>();
@@ -18,7 +18,7 @@ public class findingLoops {
 	private int currentRow=0;
  
 	public  findingLoops(ArrayList<Node>nodes,ArrayList<Edge>edges) {
- 
+		loops= new ArrayList<>();
 		this.nodes=nodes;
 		this.edges=edges;
 		fillChildrens();
@@ -237,7 +237,7 @@ private void TracePath(Node n){
  
          TraceTube.push(thePath.get(i));		 
 }
-		 path myPath = new path(thePath) ;
+		 path myPath = new path(thePath,edges) ;
 		 paths.add(myPath);
  
 	}

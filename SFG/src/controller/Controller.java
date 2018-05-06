@@ -41,6 +41,10 @@ public class Controller {
 		} else if (e.getSource() == frame.calculateBtn) {
 			//print();
 			shape = "calculation";
+			frame.selected("calculate");
+		}else if (e.getSource() == frame.hintBtn) {
+			//
+			frame.selected("Hint");
 		}
 
 	}
@@ -89,6 +93,7 @@ public class Controller {
 		}else if(shape.equals("calculation")){
 			
 			Mason mason = new Mason(nodesList,edgesList);
+			System.out.println(mason.getResult());
 		}
 
 	}

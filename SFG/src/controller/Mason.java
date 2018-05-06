@@ -22,27 +22,29 @@ public class Mason {
 	private ArrayList<path> paths; 
 	private ArrayList<Loop> loops;
 	private ArrayList<ArrayList<ArrayList<Loop>>> nonTouching;
+	private ArrayList<Node> nodesList;
+	private ArrayList<Edge> edgesList;
+	private int Delta;
 	
 	public Mason(ArrayList<Node> nodesList, ArrayList<Edge> edgesList) {
 		
+		this.nodesList=nodesList;
+		this.edgesList=edgesList;
 		findingloops = new findingLoops(nodesList, edgesList);
 		paths= findingloops.getPaths();
 		loops = findingloops.getLoops();
 		nonTouchingLoops = new NonTouchingLoops(loops);
 		nonTouching = nonTouchingLoops.nonTouching;
-		System.out.println("delta"+getDelta(loops,nonTouching));
-		getNumerator();
+		Delta=getDelta(loops,nonTouching);
+	}
+	
+	public int getResult(){
+		return (getNumerator()/Delta);
+		
 	}
 	
 	
-	
 	private int getDelta(ArrayList<Loop> loops,ArrayList<ArrayList<ArrayList<Loop>>> nonTouching){
-//		for(int i=0;i<loops.size();i++){
-//			for(int j=0;j<loops.get(i).getLoop().size();j++){
-//				System.out.print(loops.get(i).getLoop().get(j).getId());
-//			}
-//			System.out.println();
-//		}
 		boolean sign = true;//positive
 		delta =1;
 		Iterator<Loop> itr = loops.iterator();
@@ -79,24 +81,23 @@ public class Mason {
 	}
 	private int getDeltaOfK(path pathK){
 		
-		pathNonTouchLoops pLoops = new pathNonTouchLoops(loops, pathK);
+		pathNonTouchLoops pLoops = new pathNonTouchLoops(nodesList,edgesList, pathK);
 		ArrayList<Loop> pathNonTouchingLoops = pLoops.getNewLoops();
 		nonTouchingLoops = new NonTouchingLoops(pathNonTouchingLoops);
 		nonTouching = nonTouchingLoops.nonTouching;
-		
+		System.out.println("size "+pathNonTouchingLoops.size());
 		return this.getDelta(pathNonTouchingLoops, nonTouching);
 	}
 	private int getNumerator(){
-		int index=1;
+		int numerator=0;
 		Iterator<path> itr = paths.iterator();
-		System.out.println("size of paths "+paths.size());
 	    while(itr.hasNext()) {
 	    	path path= itr.next();
-	    	System.out.println("delta of k"+" "+index+""+this.getDeltaOfK(path));
-	    	    index++;
+	    	numerator+=path.getGain()*this.getDeltaOfK(path);
 	    }
+	    
 	   
-		return 0;
+		return numerator;
 		
 	}
 
