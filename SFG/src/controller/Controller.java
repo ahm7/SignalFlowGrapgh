@@ -87,7 +87,7 @@ public class Controller {
 			}
 
 		}else if(shape.equals("calculation")){
-
+			
 			Mason mason = new Mason(nodesList,edgesList);
 		}
 
@@ -130,4 +130,5 @@ public class Controller {
 		}
 		return null;
 	}
+	
 }

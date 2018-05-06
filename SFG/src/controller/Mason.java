@@ -11,6 +11,7 @@ import model.Node;
 import model.NonTouchingLoops;
 import model.findingLoops;
 import model.path;
+import model.pathNonTouchLoops;
 
 
 public class Mason {
@@ -23,26 +24,27 @@ public class Mason {
 	private ArrayList<ArrayList<ArrayList<Loop>>> nonTouching;
 	
 	public Mason(ArrayList<Node> nodesList, ArrayList<Edge> edgesList) {
-		delta =1;
+		
 		findingloops = new findingLoops(nodesList, edgesList);
 		paths= findingloops.getPaths();
 		loops = findingloops.getLoops();
 		nonTouchingLoops = new NonTouchingLoops(loops);
 		nonTouching = nonTouchingLoops.nonTouching;
-		getDelta();
+		System.out.println("delta"+getDelta(loops,nonTouching));
+		getNumerator();
 	}
 	
 	
 	
-	private int getDelta(){
-		for(int i=0;i<loops.size();i++){
-			for(int j=0;j<loops.get(i).getLoop().size();j++){
-				System.out.print(loops.get(i).getLoop().get(j).getId());
-			}
-			System.out.println();
-		}
+	private int getDelta(ArrayList<Loop> loops,ArrayList<ArrayList<ArrayList<Loop>>> nonTouching){
+//		for(int i=0;i<loops.size();i++){
+//			for(int j=0;j<loops.get(i).getLoop().size();j++){
+//				System.out.print(loops.get(i).getLoop().get(j).getId());
+//			}
+//			System.out.println();
+//		}
 		boolean sign = true;//positive
-		
+		delta =1;
 		Iterator<Loop> itr = loops.iterator();
 	    while(itr.hasNext()) {
 	    	Loop loop = itr.next();
@@ -51,7 +53,6 @@ public class Mason {
 	    
 	    }
 	    
-	    System.out.println("Deltaaa"+delta);
 	    int temp=1;
 	    int term=0;
 	    for(int i=0;i<nonTouching.size();i++){
@@ -73,8 +74,29 @@ public class Mason {
 	    	sign=true;
 	        }
 	    }
-	    System.out.println(delta);
 		return delta;
+		
+	}
+	private int getDeltaOfK(path pathK){
+		
+		pathNonTouchLoops pLoops = new pathNonTouchLoops(loops, pathK);
+		ArrayList<Loop> pathNonTouchingLoops = pLoops.getNewLoops();
+		nonTouchingLoops = new NonTouchingLoops(pathNonTouchingLoops);
+		nonTouching = nonTouchingLoops.nonTouching;
+		
+		return this.getDelta(pathNonTouchingLoops, nonTouching);
+	}
+	private int getNumerator(){
+		int index=1;
+		Iterator<path> itr = paths.iterator();
+		System.out.println("size of paths "+paths.size());
+	    while(itr.hasNext()) {
+	    	path path= itr.next();
+	    	System.out.println("delta of k"+" "+index+""+this.getDeltaOfK(path));
+	    	    index++;
+	    }
+	   
+		return 0;
 		
 	}
 
