@@ -20,7 +20,7 @@ public class Controller {
 	DrawingEngine drawingEngine;
 	static String shape ="null";
 	Node first, second;
-	int gain;
+	double gain;
 
 	public Controller(Frame frame) {
 		this.frame = frame;
@@ -110,7 +110,7 @@ public class Controller {
 					if(!checkInvalidEdge()){
 					String	str = JOptionPane
 								.showInputDialog("Enter the gain of your edge!");// draw
-							gain=Integer.parseInt(str);													// edge
+							gain=Double.parseDouble(str);													// edge
 					checkDrawEdge(Integer.toString(first.getId())
 							+ Integer.toString(second.getId()));
 					}else{
@@ -134,6 +134,7 @@ public class Controller {
 
 	private boolean checkInvalidEdge() {
 		if(first.getId()==second.getId()){
+			
 			return true;
 		}else{
 		return false;

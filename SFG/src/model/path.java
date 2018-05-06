@@ -32,8 +32,8 @@ public class path {
 	public ArrayList<Node> getpath(){
 		return this.path;
 	}
-	public int getGain(){
-		int gain =1;
+	public double getGain(){
+		double gain =1;
 	
 		for(int i=0;i<pathEdges.size();i++){
 	    	gain*=pathEdges.get(i).getValue();

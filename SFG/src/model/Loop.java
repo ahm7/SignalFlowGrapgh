@@ -39,8 +39,8 @@ public class Loop {
 	
 	
 	
-	public int getGain(){
-		int gain =1;
+	public double getGain(){
+		double gain =1;
 	
 		for(int i=0;i<loopEdges.size();i++){
 	    	gain*=loopEdges.get(i).getValue();

@@ -16,7 +16,7 @@ import model.pathNonTouchLoops;
 
 public class Mason {
 	
-	private int delta;
+	private double delta;
 	private findingLoops findingloops;
 	private NonTouchingLoops nonTouchingLoops;
 	private ArrayList<path> paths; 
@@ -24,7 +24,7 @@ public class Mason {
 	private ArrayList<ArrayList<ArrayList<Loop>>> nonTouching;
 	private ArrayList<Node> nodesList;
 	private ArrayList<Edge> edgesList;
-	private int Delta;
+	private double Delta;
 	
 	public Mason(ArrayList<Node> nodesList, ArrayList<Edge> edgesList) {
 		
@@ -38,13 +38,13 @@ public class Mason {
 		Delta=getDelta(loops,nonTouching);
 	}
 	
-	public int getResult(){
+	public double getResult(){
 		return (getNumerator()/Delta);
 		
 	}
 	
 	
-	private int getDelta(ArrayList<Loop> loops,ArrayList<ArrayList<ArrayList<Loop>>> nonTouching){
+	private double getDelta(ArrayList<Loop> loops,ArrayList<ArrayList<ArrayList<Loop>>> nonTouching){
 		boolean sign = true;//positive
 		delta =1;
 		Iterator<Loop> itr = loops.iterator();
@@ -55,8 +55,8 @@ public class Mason {
 	    
 	    }
 	    
-	    int temp=1;
-	    int term=0;
+	    double temp=1;
+	    double term=0;
 	    for(int i=0;i<nonTouching.size();i++){
 	    	for(int j=0;j<nonTouching.get(i).size();j++){
 	    		for(int x=0;x<nonTouching.get(i).get(j).size();x++){
@@ -79,7 +79,7 @@ public class Mason {
 		return delta;
 		
 	}
-	private int getDeltaOfK(path pathK){
+	private double getDeltaOfK(path pathK){
 		
 		pathNonTouchLoops pLoops = new pathNonTouchLoops(nodesList,edgesList, pathK);
 		ArrayList<Loop> pathNonTouchingLoops = pLoops.getNewLoops();
@@ -88,7 +88,7 @@ public class Mason {
 		System.out.println("size "+pathNonTouchingLoops.size());
 		return this.getDelta(pathNonTouchingLoops, nonTouching);
 	}
-	private int getNumerator(){
+	private double getNumerator(){
 		int numerator=0;
 		Iterator<path> itr = paths.iterator();
 	    while(itr.hasNext()) {
