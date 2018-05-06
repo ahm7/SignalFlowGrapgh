@@ -18,7 +18,7 @@ public class Controller {
 	private ArrayList<Edge> edgesList;// /////////////////3'areha
 	static Frame frame;
 	DrawingEngine drawingEngine;
-	static String shape;
+	static String shape ="null";
 	Node first, second;
 	int gain;
 
@@ -29,7 +29,7 @@ public class Controller {
 		edgesList = new ArrayList<Edge>();
 	}
 
-	public static void actionOnButtons(ActionEvent e) {
+	public void actionOnButtons(ActionEvent e) {
 
 		if (e.getSource() == frame.nodeBtn) {
 			shape = "node";
@@ -43,10 +43,44 @@ public class Controller {
 			shape = "calculation";
 			frame.selected("calculate");
 		}else if (e.getSource() == frame.hintBtn) {
-			//
 			frame.selected("Hint");
+			hint(getNumOfNodes());			
+		}else if (e.getSource() == frame.clearBtn) {
+			frame.selected("clear");
+			clear();
 		}
 
+	}
+
+	private void clear() {
+		nodesList= new ArrayList<>();
+		edgesList=new ArrayList<>();
+		frame.drawArea.clear();
+		
+	}
+
+	private static int getNumOfNodes() {
+		String	str = JOptionPane
+				.showInputDialog("Enter number of nodes!");// draw
+					
+		return Integer.parseInt(str);
+	}
+
+	private  void hint(int numOfNodes) {
+		int delta =(900/numOfNodes),x=50,y=300;
+		for(int i=0;i<numOfNodes;i++){
+			Node node = new Node(i, x, y);
+			x+=delta;
+			nodesList.add(node);
+			nodeIndex++;
+			drawingEngine.refresh(nodesList, edgesList, frame.drawArea);
+		}
+		for(int i=0;i<nodesList.size()-1;i++){
+			Edge edge = new Edge(nodesList.get(i), nodesList.get(i+1), 0);
+			edgesList.add(edge);
+			drawingEngine.refresh(nodesList, edgesList, frame.drawArea);
+		}
+		
 	}
 
 	private  void print() {

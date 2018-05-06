@@ -20,6 +20,7 @@ public class Frame {
 	public JButton edgeBtn;
 	public JButton calculateBtn;
 	public JButton hintBtn;
+	public JButton clearBtn;
 	public DrawArea drawArea;
 	public ActionListener actionListener;
 	public MouseListener mouseListener;
@@ -37,6 +38,7 @@ public class Frame {
 		nodeBtn.addActionListener(actionListener);
 		edgeBtn.addActionListener(actionListener);
 		hintBtn.addActionListener(actionListener);
+		clearBtn.addActionListener(actionListener);
 		calculateBtn.addActionListener(actionListener);
 		drawArea.addMouseListener(mouseListener);
 	}
@@ -56,10 +58,14 @@ public class Frame {
 		hintBtn = new JButton("Hint");
 		hintBtn.setBackground(Color.WHITE);
 		buttons.add(hintBtn);
+		clearBtn = new JButton("Clear");
+		clearBtn.setBackground(Color.WHITE);
+		buttons.add(clearBtn);
 		toolPanel.add(nodeBtn);
 		toolPanel.add(edgeBtn);
 		toolPanel.add(calculateBtn);
 		toolPanel.add(hintBtn);
+		toolPanel.add(clearBtn);
 	}
 
 	private void setFrame() {
@@ -93,7 +99,12 @@ public class Frame {
 			hintBtn.setBackground(Color.BLACK);
 			hintBtn.setForeground(Color.WHITE);
 			setWhiteExcept(hintBtn);
+		}else if (string.equals("clear")) {
+			clearBtn.setBackground(Color.BLACK);
+			clearBtn.setForeground(Color.WHITE);
+			setWhiteExcept(clearBtn);
 		}
+		
 
 	}
 
