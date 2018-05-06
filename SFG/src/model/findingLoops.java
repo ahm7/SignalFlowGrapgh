@@ -6,12 +6,11 @@ public class findingLoops {
 
 	
 	
-	private Stack<Node> TraceTube= new Stack<>();
+	private Stack<Node> TraceTube = new Stack<>();
 	private ArrayList<Node>nodes;
 	private ArrayList<Edge>edges;
 	private ArrayList<Loop>loops= new ArrayList<>();
 	private ArrayList<path>paths= new ArrayList<>();
-
 	private ArrayList<ArrayList<Edge>>edgesOfLoops=new ArrayList<>();
 	private ArrayList<ArrayList<Edge>>finaledgesOfLoops=new ArrayList<>();
 
@@ -55,13 +54,11 @@ for(int i=0;i<this.edges.size();i++){
 
 
  private void Trace (Node e ){
-	 //`System.out.println(e.getId()+1);
 	// System.out.println(e.getId());
 ArrayList<Node> theloop = new ArrayList();
 int size = TraceTube.size();
 //System.out.println(size);
 	 if ( TraceTube.contains(e) ) {
-		 
 	   Stack <Node>temp1 =  new Stack<>();
 	   Stack <Node>temp =  new Stack<>();
 	   for(int i=0;i<size;i++){
@@ -95,19 +92,23 @@ int size = TraceTube.size();
 	 }}
 	 else{
 		 TraceTube.push(e);
+		 //System.out.println(e.getId());
 		 ArrayList<Node> temp =childrens.get(e.getId());
+		 //System.out.println( e.getId()+" "+"ope"+" "+ childrens.get(e.getId()).size());
+ 
 	 for(int i=0; i< childrens.get(e.getId()).size();i++){
-		 for(int ii=0;ii<size+1;ii++){
-			 if(i>0 &&TraceTube.peek().getId()!= e.getId()){
-				 TraceTube.pop();
-			 }
+		 size = TraceTube.size();
+		 
+		 while(e.getId() != TraceTube.peek().getId()){
+			// System.out.println(TraceTube.peek().getId());
+			 TraceTube.pop();
+			 
 		 }
+		 
 	 Trace(temp.get(i));
 
 	 }
-
-
-
+return;
 	 }
 
 
@@ -149,7 +150,7 @@ private void findingLoopsEdges(){
 	
 	
 	
-	
+	int po=0;	
 	for(int u=0;u<edgesOfLoops.size()-1;u++){
 		int t =0;
 		for(int z=u+1;z<edgesOfLoops.size();z++){
@@ -172,7 +173,10 @@ private void findingLoopsEdges(){
 				
 				if(t==-1){
 					edgesOfLoops.get(z).clear();
-	//loops.remove(z);
+					System.out.println(u);
+	loops.remove(z-po);
+	po++;
+	t=0;
 				}
 				
 			}
@@ -196,6 +200,7 @@ private void findingLoopsEdges(){
 for(int q=0;q<edgesOfLoops.size();q++){
 		
 		if(edgesOfLoops.get(q).size() == 0){
+			//System.out.println(q);
 		//	loops.remove(q-i);
 		}
 		i++;
@@ -235,9 +240,11 @@ private void TracePath(Node n){
 		TraceTube.push(n);
 		for(int i=0;i<childrens.get(n.getId()).size();i++){
 			 for(int ii=0;ii<size+1;ii++){
+				// System.out.println(n.getId()+" "+ TraceTube.size());
 				 if(i>0 &&TraceTube.peek().getId()!= n.getId()){
 					 TraceTube.pop();
 				 }
+				 
 			 }
 			if(childrens.get(n.getId()).get(i).getId()>n.getId()){
 				//System.out.println(n.getId()+1 + " "+(childrens.get(n.getId()).get(i).getId()+1)+" "+ "comparison" );
@@ -252,10 +259,7 @@ private void TracePath(Node n){
 	
 }
 
-public void printPaths(){
-	
-	
-}
+
 
 
 
@@ -276,7 +280,6 @@ public void printPaths(){
 				 break;
 			 }
 			 loop.add(temp.pop().node);
-
 		 }
 		 Loop currenLoop = new Loop(loop);
 		 loops.add(currenLoop);
@@ -320,5 +323,4 @@ public void printPaths(){
  
 condition of end
 	
-
 }*/
