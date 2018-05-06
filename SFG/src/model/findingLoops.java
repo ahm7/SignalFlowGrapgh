@@ -80,7 +80,8 @@ int size = TraceTube.size();
 		//   System.out.println(temp.peek().getId()+" "+e.getId());
 	 if(temp.peek().getId() == e.getId()){
 	   theloop.add(temp.pop());
-	   Loop myLoop = new  Loop(theloop);
+	   Loop myLoop = new  Loop(theloop,edges);
+	   ///////////////ana zwetha
 	   loops.add(myLoop);
 	   ArrayList<Edge> fill = new ArrayList<>();
 	   edgesOfLoops.add(fill);

@@ -19,17 +19,17 @@ public class Main {
 	  Node a = new Node(i,0,0);
 	  nodes.add(a);
   }
-  Edge a = new Edge(nodes.get(0), nodes.get(1), "h");
-  Edge b = new Edge(nodes.get(1), nodes.get(0),"g");
-  Edge c = new Edge(nodes.get(1), nodes.get(2), "h");
-  Edge d = new Edge(nodes.get(2), nodes.get(3),"g");
-  Edge e = new Edge(nodes.get(3), nodes.get(2), "h");
-  Edge f = new Edge(nodes.get(3), nodes.get(4),"g");
-  Edge g = new Edge(nodes.get(4), nodes.get(5), "h");
-  Edge h = new Edge(nodes.get(5), nodes.get(4),"g");
-  Edge i = new Edge(nodes.get(5), nodes.get(6), "h");
-  Edge j = new Edge(nodes.get(6), nodes.get(7),"g");
-  Edge k = new Edge(nodes.get(7), nodes.get(6), "h");
+  Edge a = new Edge(nodes.get(0), nodes.get(1), 5);
+  Edge b = new Edge(nodes.get(1), nodes.get(0),6);
+  Edge c = new Edge(nodes.get(1), nodes.get(2), 7);
+  Edge d = new Edge(nodes.get(2), nodes.get(3),8);
+  Edge e = new Edge(nodes.get(3), nodes.get(2), 9);
+  Edge f = new Edge(nodes.get(3), nodes.get(4),10);
+  Edge g = new Edge(nodes.get(4), nodes.get(5), 11);
+  Edge h = new Edge(nodes.get(5), nodes.get(4),12);
+  Edge i = new Edge(nodes.get(5), nodes.get(6), 13);
+  Edge j = new Edge(nodes.get(6), nodes.get(7),14);
+  Edge k = new Edge(nodes.get(7), nodes.get(6), 15);
  
 
 		 edges.add(a);

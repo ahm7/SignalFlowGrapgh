@@ -14,13 +14,13 @@ import model.Node;
 
 public class Controller {
 	int nodeIndex = 0;
-	static ArrayList<Node> nodesList; // /////////////////3'areha
-	static ArrayList<Edge> edgesList;// /////////////////3'areha
+	private ArrayList<Node> nodesList; // /////////////////3'areha //3'ratohom mn static l private
+	private ArrayList<Edge> edgesList;// /////////////////3'areha
 	static Frame frame;
 	DrawingEngine drawingEngine;
 	static String shape;
 	Node first, second;
-	String gain;
+	int gain;
 
 	public Controller(Frame frame) {
 		this.frame = frame;
@@ -39,12 +39,13 @@ public class Controller {
 			shape = "edge";
 			frame.selected("edge");
 		} else if (e.getSource() == frame.calculateBtn) {
-			print();
+			//print();
+			shape = "calculation";
 		}
 
 	}
 
-	private static void print() {
+	private  void print() {
 		for (Edge edge : edgesList)
 			System.out.println(edge.getFirstNode().getId() + " "
 					+ edge.getValue() + " " + edge.getSecondNode().getId());
@@ -69,9 +70,9 @@ public class Controller {
 				} else if (second == null) {
 					second = node;
 					if(!checkInvalidEdge()){
-						gain = JOptionPane
+					String	str = JOptionPane
 								.showInputDialog("Enter the gain of your edge!");// draw
-																					// edge
+							gain=Integer.parseInt(str);													// edge
 					checkDrawEdge(Integer.toString(first.getId())
 							+ Integer.toString(second.getId()));
 					}else{
@@ -85,6 +86,9 @@ public class Controller {
 				System.out.println("not involving node" + point);
 			}
 
+		}else if(shape.equals("calculation")){
+
+			Mason mason = new Mason(nodesList,edgesList);
 		}
 
 	}
@@ -101,7 +105,7 @@ public class Controller {
 		boolean found = false;
 		for (Edge edge : edgesList) {
 			if (edge.getId().equals(string)) {
-				edge.setValue(gain + "+" + edge.getValue());
+				edge.setValue(gain + edge.getValue());
 				found = true;
 				drawingEngine.refresh(nodesList, edgesList, frame.drawArea);
 				break;

@@ -11,9 +11,9 @@ public class Edge {
 
 	private Node firstNode;
 	private Node secondNode;
-	private String value;
+	private int value;
 
-	public void setValue(String value) {
+	public void setValue(int value) {
 		this.value = value;
 	}
 
@@ -24,7 +24,7 @@ public class Edge {
 		return id;
 	}
 
-	public Edge(Node first, Node second, String value) {
+	public Edge(Node first, Node second, int value) {
 		this.firstNode = first;
 		this.secondNode = second;
 		this.value = value;
@@ -39,7 +39,7 @@ public class Edge {
 		return this.secondNode;
 	}
 
-	public String getValue() {
+	public int getValue() {
 		return this.value;
 	}
 
@@ -64,7 +64,7 @@ public class Edge {
 				secondNode.getPositionY() + (secondNode.getHeight() / 2));
 		//g2.draw(q);
 		//g2.setColor(Color.red);
-		g2.drawString(value, (int) q.getCtrlX(),
+		g2.drawString(Integer.toString(value), (int) q.getCtrlX(),
 				(int) (q.getBounds().getCenterY()-5));
 		 Arrow.draw(g2, q.getCtrlPt(), q.getP2(), new BasicStroke(2),new
 		 BasicStroke(2), 25,q);
