@@ -44,6 +44,7 @@ public class Edge {
 	}
 
 	public void draw(Graphics2D g2) {
+		
 		g2.setPaint(Color.black);
 
 		// create new QuadCurve2D.Float

@@ -39,8 +39,8 @@ public class Controller {
 			shape = "edge";
 			frame.selected("edge");
 		} else if (e.getSource() == frame.calculateBtn) {
-			//print();
-			shape = "calculation";
+			Mason mason = new Mason(nodesList,edgesList);
+			System.out.println(mason.getResult());
 			frame.selected("calculate");
 		}else if (e.getSource() == frame.hintBtn) {
 			frame.selected("Hint");
@@ -54,6 +54,7 @@ public class Controller {
 
 	private void clear() {
 		nodesList= new ArrayList<>();
+		nodeIndex=0;
 		edgesList=new ArrayList<>();
 		frame.drawArea.clear();
 		
@@ -124,10 +125,6 @@ public class Controller {
 				System.out.println("not involving node" + point);
 			}
 
-		}else if(shape.equals("calculation")){
-			
-			Mason mason = new Mason(nodesList,edgesList);
-			System.out.println(mason.getResult());
 		}
 
 	}
