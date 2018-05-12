@@ -2,6 +2,8 @@ package model;
 
 import java.util.ArrayList;
 
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
+
 public class NonTouchingLoops {
 
 	public ArrayList<ArrayList<ArrayList<Loop>>> nonTouching = new ArrayList<>();
@@ -31,15 +33,7 @@ public class NonTouchingLoops {
 					
 		}
 	
-		/*for(int i=0;i<loop1.size();i++){
-			System.out.print(loop1.get(i).getId()+" ");
-		}
-		System.out.println(" ");
-		for(int i=0;i<loop2.size();i++){
-			System.out.print(loop2.get(i).getId()+" ");
-
-		}
-		System.out.println(" ");*/
+		
 		return flag;
 	}
 	
@@ -63,7 +57,7 @@ public class NonTouchingLoops {
 				ArrayList<Loop> temp = new ArrayList<>();
 				temp.add(loops.get(i));
 				temp.add(loops.get(j));
-				System.out.println(temp);
+				//System.out.println(temp);
 				nonTouching.get(0).add(temp);
 				check(temp);
 				
@@ -188,6 +182,56 @@ public class NonTouchingLoops {
 		return false;
 	}
 	
+	public  ArrayList<String>getLoopsInListOfString(){
+		ArrayList<String>LoopsInListOfString=new ArrayList<>();
+		for(int i=0; i < loops.size();i++){
+			String thisLoop="L" ;
+			thisLoop+= i+1;
+			thisLoop+= " = ";
+			for(int j=0; j < loops.get(i).getLoop().size(); j++){
+				thisLoop+= loops.get(i).getLoop().get(j).getId();
+			}
+			
+			LoopsInListOfString.add(thisLoop);
+		
+		}
+	
+		
+		
+		return LoopsInListOfString ;
+		
+	}
+	public ArrayList<String> getNonTouchingLoopsInListOfStrings(){
+		
+		ArrayList<String>  NonTouchloopsInString = new ArrayList<>();
+		
+		for(int k=0; k <nonTouching.size();k++ ){
+			
+			for(int q =0 ; q<nonTouching.get(k).size();q++){
+				String thisNonTouchLoops= "";
+				for(int z=0;z<nonTouching.get(k).get(q).size();z++){
+					 thisNonTouchLoops+= "L";
+					for(int w=0;w<loops.size();w++){
+						if(nonTouching.get(k).get(q).get(z).getLoop()==loops.get(w).getLoop()){
+							thisNonTouchLoops+=w+1;
+						}
+					}
+					
+					if(z+1<nonTouching.get(k).get(q).size()){
+						thisNonTouchLoops +=" , ";	
+					}
+				}
+				
+				NonTouchloopsInString.add(thisNonTouchLoops);
+				
+			}
+			
+			
+		}
+		
+		
+		return NonTouchloopsInString;
+	}
 	
 	
 	

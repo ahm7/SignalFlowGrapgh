@@ -13,7 +13,7 @@ public class findingLoops {
 	private ArrayList<path>paths= new ArrayList<>();
 	private ArrayList<ArrayList<Edge>>edgesOfLoops=new ArrayList<>();
 	private ArrayList<ArrayList<Edge>>finaledgesOfLoops=new ArrayList<>();
-	private int sinkPosition=-1;
+	private int sinkPosition=0;
  
 	private int currentRow=0;
  
@@ -217,11 +217,12 @@ for(int q=0;q<edgesOfLoops.size();q++){
 private void TracePath(Node n){
  
 	if(sinkPosition == -1 || sinkPosition == -2  ){
- 
 	}else{
  
 	if(n.getId()==0){
+		TraceTube.clear();
 		TraceTube.push(n);
+		System.out.println(n.getId());
 	}
 	int size = TraceTube.size();
 	if(n.getId()== sinkPosition){
@@ -265,9 +266,10 @@ private void TracePath(Node n){
 }
  
 private void findSinkNode(){
- 
+	sinkPosition = -1;
 	int NumOfNode = nodes.size();
-	int counter = 0 ; 
+	sinkPosition = NumOfNode-1;
+	/*int counter = 0 ; 
 	for(int j=0;j<NumOfNode;j++){
 		int y=0;
 	for(int i=0; i<edges.size();i++){
@@ -291,8 +293,48 @@ private void findSinkNode(){
 	}
 	}
  
+	System.out.println(counter +" "+sinkPosition);*/
 }
- 
+public  ArrayList<String>getLoopsInListOfString(){
+	ArrayList<String>LoopsInListOfString=new ArrayList<>();
+	for(int i=0; i < loops.size();i++){
+		String thisLoop="L" ;
+		thisLoop+= i+1;
+		thisLoop+= " = ";
+		for(int j=0; j < loops.get(i).getLoop().size(); j++){
+			thisLoop+= loops.get(i).getLoop().get(j).getId();
+		}
+		
+		LoopsInListOfString.add(thisLoop);
+	
+	}
+
+	
+	
+	return LoopsInListOfString ;
+	
+}
+
+
+public  ArrayList<String>getPathsInListOfString(){
+	ArrayList<String>PathsInListOfString=new ArrayList<>();
+	for(int i=0; i < paths.size();i++){
+		String thisLoop="L" ;
+		thisLoop+= i+1;
+		thisLoop+= " = ";
+		for(int j=0; j < paths.get(i).getpath().size(); j++){
+			thisLoop+= paths.get(i).getpath().get(j).getId();
+		}
+		
+		PathsInListOfString.add(thisLoop);
+	
+	}
+
+	
+	
+	return PathsInListOfString ;
+	
+}
  
  
  
