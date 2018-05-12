@@ -14,8 +14,8 @@ import model.Node;
 
 public class Controller {
 	int nodeIndex = 0;
-	private ArrayList<Node> nodesList; // /////////////////3'areha //3'ratohom mn static l private
-	private ArrayList<Edge> edgesList;// /////////////////3'areha
+	private ArrayList<Node> nodesList; 
+	private ArrayList<Edge> edgesList;
 	static Frame frame;
 	DrawingEngine drawingEngine;
 	static String shape ="null";
@@ -76,11 +76,11 @@ public class Controller {
 			nodeIndex++;
 			drawingEngine.refresh(nodesList, edgesList, frame.drawArea);
 		}
-		for(int i=0;i<nodesList.size()-1;i++){
-			Edge edge = new Edge(nodesList.get(i), nodesList.get(i+1), 0);
-			edgesList.add(edge);
-			drawingEngine.refresh(nodesList, edgesList, frame.drawArea);
-		}
+//		for(int i=0;i<nodesList.size()-1;i++){
+//			Edge edge = new Edge(nodesList.get(i), nodesList.get(i+1), 0);
+//			edgesList.add(edge);
+//			drawingEngine.refresh(nodesList, edgesList, frame.drawArea);
+//		}
 		
 	}
 
@@ -108,15 +108,18 @@ public class Controller {
 					first = node;
 				} else if (second == null) {
 					second = node;
-					if(!checkInvalidEdge()){
+					
 					String	str = JOptionPane
 								.showInputDialog("Enter the gain of your edge!");// draw
-							gain=Double.parseDouble(str);													// edge
+					try{
+							gain=Double.parseDouble(str);	
+					// edge
 					checkDrawEdge(Integer.toString(first.getId())
-							+ Integer.toString(second.getId()));
-					}else{
-						System.out.println("not valid Edge");
+					+ Integer.toString(second.getId()));
+                    }catch(Exception q){
+						
 					}
+					
 					first = null;
 					second = null;
 				}
@@ -129,14 +132,7 @@ public class Controller {
 
 	}
 
-	private boolean checkInvalidEdge() {
-		if(first.getId()==second.getId()){
-			
-			return true;
-		}else{
-		return false;
-		}
-	}
+	
 
 	private void checkDrawEdge(String string) {//check not repeated node if so make them one edge add their gains
 		boolean found = false;
