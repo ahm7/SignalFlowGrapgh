@@ -44,7 +44,7 @@ public class Edge {
 	}
 
 	public void draw(Graphics2D g2) {
-		g2.setPaint(Color.black);
+		g2.setPaint(new Color(102, 102, 102));
 		g2.setStroke(new BasicStroke(2));
 		int distance =  (int) Math.abs(firstNode.getPositionX()-secondNode.getPositionX());
 		switch (distance){
@@ -59,10 +59,10 @@ public class Edge {
 	    		QuadCurve2D q = new QuadCurve2D.Float();
 	    		q.setCurve(firstNode.getPositionX() + (firstNode.getWidth() / 2),
 	    				firstNode.getPositionY() + (secondNode.getHeight() / 2),
-	    				distance/200+firstNode.getPositionX(),distance*3,secondNode.getPositionX() + (secondNode.getWidth() / 2),
+	    				distance/150+firstNode.getPositionX(),firstNode.getPositionY()+(distance/2),secondNode.getPositionX() + (secondNode.getWidth() / 2),
 	    				secondNode.getPositionY() + (secondNode.getHeight() / 2));
 	    		g2.drawString(Double.toString(value), (int) (q.getBounds().getCenterX()-20),
-	    				(int) (q.getBounds().getCenterY()-20));
+	    				(int) (q.getBounds().getCenterY()-10));
 	    		g2.draw(q);    		
 	    		 Arrow.draw(g2, q.getCtrlPt(), q.getP2(), new BasicStroke(2),new
 	    				 BasicStroke(2), 25);
@@ -77,24 +77,25 @@ public class Edge {
 			break;
 	    default:
 	    	if (firstNode.getId() < secondNode.getId()) {
-//			g2.drawArc((int)firstNode.getPositionX()+15, (int)firstNode.getPositionY()-(distance/2)+30, distance, distance-50, 0,180 );
-//			Arrow.draw(g2, new Point((int)firstNode.getPositionX()+(distance),(int)firstNode.getPositionY()-(distance)), new Point((int)secondNode.getPositionX()+15,(int)secondNode.getPositionY()+15), new BasicStroke(2),new
-//					 BasicStroke(2), 25);
-	    		QuadCurve2D q = new QuadCurve2D.Float();
-	    		q.setCurve(firstNode.getPositionX() + (firstNode.getWidth() / 2),
-	    				firstNode.getPositionY() + (secondNode.getHeight() / 2),
-	    				distance+firstNode.getPositionX(),1/(distance/9),secondNode.getPositionX() + (secondNode.getWidth() / 2),
-	    				secondNode.getPositionY() + (secondNode.getHeight() / 2));
-	    		g2.drawString(Double.toString(value), (int) (q.getBounds().getCenterX()-5),
-	    				(int) (q.getBounds().getCenterY()+5));
-	    		g2.draw(q);    		
-	    		 Arrow.draw(g2, q.getCtrlPt(), q.getP2(), new BasicStroke(2),new
-	    				 BasicStroke(2), 25);
+			g2.drawArc((int)firstNode.getPositionX()+15, (int)firstNode.getPositionY()-(distance/2)+30, distance, distance-50, 0,180 );
+			g2.drawString(Double.toString(value), (int)firstNode.getPositionX()+(distance/2),(int)firstNode.getPositionY()-distance/2+15);
+			Arrow.draw(g2, new Point((int)firstNode.getPositionX()+(distance),(int)firstNode.getPositionY()-(distance)), new Point((int)secondNode.getPositionX()+15,(int)secondNode.getPositionY()+15), new BasicStroke(2),new
+					 BasicStroke(2), 25);
+//	    		QuadCurve2D q = new QuadCurve2D.Float();
+//	    		q.setCurve(firstNode.getPositionX() + (firstNode.getWidth() / 2),
+//	    				firstNode.getPositionY() + (secondNode.getHeight() / 2),
+//	    				distance+firstNode.getPositionX(),1/(distance/9),secondNode.getPositionX() + (secondNode.getWidth() / 2),
+//	    				secondNode.getPositionY() + (secondNode.getHeight() / 2));
+//	    		g2.drawString(Double.toString(value), (int) (q.getBounds().getCenterX()-5),
+//	    				(int) (q.getBounds().getCenterY()+5));
+//	    		g2.draw(q);    		
+//	    		 Arrow.draw(g2, q.getCtrlPt(), q.getP2(), new BasicStroke(2),new
+//	    				 BasicStroke(2), 25);
 	    	}else if(firstNode.getId() >secondNode.getId()){
 	    		QuadCurve2D q = new QuadCurve2D.Float();
 	    		q.setCurve(firstNode.getPositionX() + (firstNode.getWidth() / 2),
 	    				firstNode.getPositionY() + (secondNode.getHeight() / 2),
-	    				distance/150+firstNode.getPositionX(),distance*1.3,secondNode.getPositionX() + (secondNode.getWidth() / 2),
+	    				distance/150+firstNode.getPositionX(),firstNode.getPositionY()+(distance/2),secondNode.getPositionX() + (secondNode.getWidth() / 2),
 	    				secondNode.getPositionY() + (secondNode.getHeight() / 2));
 	    		g2.drawString(Double.toString(value), (int) (q.getBounds().getCenterX()-5),
 	    				(int) (q.getBounds().getCenterY()-10));

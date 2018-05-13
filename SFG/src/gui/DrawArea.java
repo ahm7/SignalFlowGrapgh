@@ -36,7 +36,7 @@ public class DrawArea extends JComponent {
 		 g.drawImage(image, 0, 0, null);
 	 }
 	public void clear() {
-		  getG2().setPaint(new Color(240,255,255));
+		  getG2().setPaint(new Color(179, 209, 255));
 		  getG2().fillRect(0, 0, getSize().width, getSize().height);
 		  getG2().setPaint(Color.black);
 		  repaint();

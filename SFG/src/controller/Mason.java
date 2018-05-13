@@ -25,6 +25,8 @@ public class Mason {
 	private ArrayList<Node> nodesList;
 	private ArrayList<Edge> edgesList;
 	private double Delta;
+	public String error=null;
+	private String DeltaOfPaths="4)Delta of Paths :<br/>";
 	
 	public Mason(ArrayList<Node> nodesList, ArrayList<Edge> edgesList) {
 		
@@ -90,26 +92,49 @@ public class Mason {
 	}
 	private double getNumerator(){
 		int numerator=0;
+		int i=1;
 		Iterator<path> itr = paths.iterator();
 	    while(itr.hasNext()) {
 	    	path path= itr.next();
 	    	numerator+=path.getGain()*this.getDeltaOfK(path);
+	    	DeltaOfPaths+="\u0394"+i+" = "+this.getDeltaOfK(path)+"<br/>";
+	    	i++;
 	    }
-	    
-	   
-		return numerator;
+	    return numerator;
 		
 	}
 	public String getDetailedResult(){
-		String loops="<html>Loops :<br/>";
+		String loops="<html>1)Paths :<br/><br/>";
 		ArrayList<String> array =findingloops.getPathsInListOfString();
 		for(int i=0;i<array.size();i++){
 		loops+=	array.get(i)+"<br/>";
 		}
-		array=nonTouchingLoops.getLoopsInListOfString();
+		if(array.size()==0){
+			error="Unconnected Graph !!";
+			loops+="Non <br/>";
+		}
+		loops+="<br/>";
+		loops+="2)Loops :<br/><br/>";
+		array=findingloops.getLoopsInListOfString();
+		for(int i=0;i<array.size();i++){
+			loops+=	array.get(i)+"<br/>";
+			}
+		if(array.size()==0){
+			loops+="Non <br/>";
+		}
+		loops+="<br/>";
+		loops+="3)Non Touching loops :<br/><br/>";
+		array=nonTouchingLoops.getNonTouchingLoopsInListOfStrings();
 		for(int i=0;i<array.size();i++){
 			loops+=	array.get(i)+"<br/>";
 		}
+		if(array.size()==0){
+			loops+="Non <br/>";
+		}
+		loops+="<br/>";
+		loops+=DeltaOfPaths;
+		loops+="<br/>";
+		loops+="5)Result : <br/><br/>"+this.getResult()+"<br/>";
 		loops+="</html>";
 		return loops;
 	}

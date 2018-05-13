@@ -20,6 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingConstants;
 
 public class Frame {
 	
@@ -110,12 +111,16 @@ public class Frame {
 		container.add(panel, BorderLayout.CENTER);
 		JPanel backPanel = new JPanel(new BorderLayout());
 		backPanel.setBounds(0,0,1000,680);
+		//panel.setPreferredSize(new Dimension(1));
 		panel.add(backPanel);
 		JPanel textPanel = new JPanel(new BorderLayout());
 		reaultArea = new JLabel();
-		textPanel.add(reaultArea);
-		textPanel.setBackground(new Color(240,255,255));
-        reaultArea.setPreferredSize(new Dimension(400,1000));
+		reaultArea.setVerticalAlignment(SwingConstants.TOP);
+		JScrollPane scrollResult = new JScrollPane(reaultArea);
+		scrollResult.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		textPanel.add(scrollResult);
+		textPanel.setBackground(Color.white);
+        reaultArea.setPreferredSize(new Dimension(300,1000));
 		panel.add(textPanel,BorderLayout.EAST);
 		drawArea = new DrawArea();
 		/* size changes causing a grey area */
@@ -125,7 +130,6 @@ public class Frame {
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.getVerticalScrollBar().getModel().setValue(750);
-		System.out.println(scrollPane.getVerticalScrollBar().getValue());
 		backPanel.add(scrollPane);
 	}
 

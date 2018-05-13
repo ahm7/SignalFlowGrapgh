@@ -3,6 +3,8 @@ package controller;
 import gui.DrawingEngine;
 import gui.Frame;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -43,7 +45,12 @@ public class Controller {
 			frame.selected("edge");
 		} else if (e.getSource() == frame.calculateBtn) {
 			Mason mason = new Mason(nodesList,edgesList);
-			showResult(mason);
+			mason.getDetailedResult();
+			if(mason.error!= null){
+				JOptionPane.showConfirmDialog(null,mason.error);
+			
+			}else{
+			showResult(mason);}
 			frame.selected("calculate");
 		}else if (e.getSource() == frame.hintBtn) {
 			frame.selected("Hint");
@@ -56,6 +63,10 @@ public class Controller {
 	}
 
 	private void showResult(Mason mason) {
+		frame.reaultArea.setForeground(new Color(26, 102, 255));
+		frame.reaultArea.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+
+		frame.reaultArea.setBackground(new Color(242, 242, 242));
 		frame.reaultArea.setText(mason.getDetailedResult()+"<br/>Final Result"+mason.getResult());
 				
 	}
@@ -65,6 +76,7 @@ public class Controller {
 		nodeIndex=0;
 		edgesList=new ArrayList<>();
 		frame.drawArea.clear();
+		frame.reaultArea.setText("");
 		
 	}
 

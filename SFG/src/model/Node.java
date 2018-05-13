@@ -24,9 +24,10 @@ public class Node {
 
 	public void draw(Graphics2D g2) {
 		// frame.drawArea.clear();
-		g2.setPaint(Color.black);
-		g2.fillOval((int) positionX, (int) positionY, width, height);
 		g2.setPaint(Color.white);
+		g2.fillOval((int) positionX, (int) positionY, width, height);
+		g2.setPaint(Color.black);
+		g2.drawOval((int) positionX, (int) positionY, width, height);
 		g2.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		g2.drawString(Integer.toString(id + 1), positionX + 9, positionY + 20);
 
