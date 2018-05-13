@@ -45,12 +45,7 @@ public class Controller {
 			frame.selected("edge");
 		} else if (e.getSource() == frame.calculateBtn) {
 			Mason mason = new Mason(nodesList,edgesList);
-			mason.getDetailedResult();
-			if(mason.error!= null){
-				JOptionPane.showConfirmDialog(null,mason.error);
-			
-			}else{
-			showResult(mason);}
+			showResult(mason);
 			frame.selected("calculate");
 		}else if (e.getSource() == frame.hintBtn) {
 			frame.selected("Hint");
@@ -63,11 +58,15 @@ public class Controller {
 	}
 
 	private void showResult(Mason mason) {
+		
 		frame.reaultArea.setForeground(new Color(26, 102, 255));
 		frame.reaultArea.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
-
 		frame.reaultArea.setBackground(new Color(242, 242, 242));
 		frame.reaultArea.setText(mason.getDetailedResult()+"<br/>Final Result"+mason.getResult());
+		if(mason.error!= null){
+			JOptionPane.showConfirmDialog(null,mason.error);
+		return;
+		}
 				
 	}
 

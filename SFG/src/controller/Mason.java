@@ -26,7 +26,6 @@ public class Mason {
 	private ArrayList<Edge> edgesList;
 	private double Delta;
 	public String error=null;
-	private String DeltaOfPaths="4)Delta of Paths :<br/>";
 	
 	public Mason(ArrayList<Node> nodesList, ArrayList<Edge> edgesList) {
 		
@@ -92,13 +91,10 @@ public class Mason {
 	}
 	private double getNumerator(){
 		int numerator=0;
-		int i=1;
 		Iterator<path> itr = paths.iterator();
 	    while(itr.hasNext()) {
 	    	path path= itr.next();
 	    	numerator+=path.getGain()*this.getDeltaOfK(path);
-	    	DeltaOfPaths+="\u0394"+i+" = "+this.getDeltaOfK(path)+"<br/>";
-	    	i++;
 	    }
 	    return numerator;
 		
@@ -132,7 +128,11 @@ public class Mason {
 			loops+="Non <br/>";
 		}
 		loops+="<br/>";
-		loops+=DeltaOfPaths;
+		loops+="4)Delta of Paths :<br/>";
+		for(int i=0;i<paths.size();i++){
+			loops+="\u0394"+i+" = "+this.getDeltaOfK(paths.get(i))+"<br/>";
+		}
+		
 		loops+="<br/>";
 		loops+="5)Result : <br/><br/>"+this.getResult()+"<br/>";
 		loops+="</html>";
