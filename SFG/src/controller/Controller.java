@@ -61,7 +61,7 @@ public class Controller {
 		
 		frame.reaultArea.setForeground(new Color(26, 102, 255));
 		frame.reaultArea.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
-		frame.reaultArea.setBackground(new Color(242, 242, 242));
+		
 		frame.reaultArea.setText(mason.getDetailedResult()+"<br/>Final Result"+mason.getResult());
 		if(mason.error!= null){
 			JOptionPane.showConfirmDialog(null,mason.error);

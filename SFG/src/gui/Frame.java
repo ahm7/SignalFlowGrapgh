@@ -116,6 +116,8 @@ public class Frame {
 		JPanel textPanel = new JPanel(new BorderLayout());
 		reaultArea = new JLabel();
 		reaultArea.setVerticalAlignment(SwingConstants.TOP);
+		reaultArea.setOpaque(true);
+		reaultArea.setBackground(Color.white);
 		JScrollPane scrollResult = new JScrollPane(reaultArea);
 		scrollResult.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		textPanel.add(scrollResult);
@@ -135,23 +137,23 @@ public class Frame {
 
 	public void selected(String string) {
 		if (string.equals("node")) {
-			nodeBtn.setBackground(Color.BLACK);
+			nodeBtn.setBackground(new Color(26, 102, 255));
 			nodeBtn.setForeground(Color.WHITE);
 			setWhiteExcept(nodeBtn);
 		} else if (string.equals("edge")) {
-			edgeBtn.setBackground(Color.BLACK);
+			edgeBtn.setBackground(new Color(26, 102, 255));
 			edgeBtn.setForeground(Color.WHITE);
 			setWhiteExcept(edgeBtn);
 		}else if (string.equals("calculate")) {
-			calculateBtn.setBackground(Color.BLACK);
+			calculateBtn.setBackground(new Color(26, 102, 255));
 			calculateBtn.setForeground(Color.WHITE);
 			setWhiteExcept(calculateBtn);
 		}else if (string.equals("Hint")) {
-			hintBtn.setBackground(Color.BLACK);
+			hintBtn.setBackground(new Color(26, 102, 255));
 			hintBtn.setForeground(Color.WHITE);
 			setWhiteExcept(hintBtn);
 		}else if (string.equals("clear")) {
-			clearBtn.setBackground(Color.BLACK);
+			clearBtn.setBackground(new Color(26, 102, 255));
 			clearBtn.setForeground(Color.WHITE);
 			setWhiteExcept(clearBtn);
 		}
@@ -165,7 +167,7 @@ public class Frame {
 			JButton btn = itr.next();
 			if(btn!=exceptionBtn){
 			btn.setBackground(Color.WHITE);
-			btn.setForeground(Color.BLACK);
+			btn.setForeground(new Color(26, 102, 255));
 		}
 		}
 		
