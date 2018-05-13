@@ -4,10 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.EventQueue;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.TextArea;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -18,25 +15,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 
 public class Frame {
-	
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					Frame window = new Frame();
-//					window.set();
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
-	
+
 	JFrame frame;
 	JPanel toolPanel;
 	public JButton nodeBtn;
@@ -69,8 +52,8 @@ public class Frame {
 	}
 
 	private void setButtons() {
- 
-		buttons= new ArrayList<>();
+
+		buttons = new ArrayList<>();
 		nodeBtn = new JButton("node");
 		nodeBtn.setBackground(Color.WHITE);
 		buttons.add(nodeBtn);
@@ -86,7 +69,7 @@ public class Frame {
 		clearBtn = new JButton("Clear");
 		clearBtn.setBackground(Color.WHITE);
 		buttons.add(clearBtn);
-		errorMessage= new JLabel();
+		errorMessage = new JLabel();
 		errorMessage.setBackground(Color.cyan);
 		errorMessage.setForeground(Color.red);
 		toolPanel.add(errorMessage);
@@ -99,7 +82,7 @@ public class Frame {
 
 	private void setFrame() {
 		frame = new JFrame("SFG");
-		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setResizable(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Container container = frame.getContentPane();
@@ -110,8 +93,8 @@ public class Frame {
 		container.add(toolPanel, BorderLayout.NORTH);
 		container.add(panel, BorderLayout.CENTER);
 		JPanel backPanel = new JPanel(new BorderLayout());
-		backPanel.setBounds(0,0,1000,680);
-		//panel.setPreferredSize(new Dimension(1));
+		backPanel.setBounds(0, 0, 1000, 680);
+		// panel.setPreferredSize(new Dimension(1));
 		panel.add(backPanel);
 		JPanel textPanel = new JPanel(new BorderLayout());
 		reaultArea = new JLabel();
@@ -119,18 +102,21 @@ public class Frame {
 		reaultArea.setOpaque(true);
 		reaultArea.setBackground(Color.white);
 		JScrollPane scrollResult = new JScrollPane(reaultArea);
-		scrollResult.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollResult
+				.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		textPanel.add(scrollResult);
 		textPanel.setBackground(Color.white);
-        reaultArea.setPreferredSize(new Dimension(300,1000));
-		panel.add(textPanel,BorderLayout.EAST);
+		reaultArea.setPreferredSize(new Dimension(300, 1000));
+		panel.add(textPanel, BorderLayout.EAST);
 		drawArea = new DrawArea();
 		/* size changes causing a grey area */
 		/* if new Dimension(1500,1600) it's all white */
-		drawArea.setPreferredSize(new Dimension(4000,1600));
+		drawArea.setPreferredSize(new Dimension(4000, 1600));
 		JScrollPane scrollPane = new JScrollPane(drawArea);
-		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane
+				.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		scrollPane
+				.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.getVerticalScrollBar().getModel().setValue(750);
 		backPanel.add(scrollPane);
 	}
@@ -144,33 +130,32 @@ public class Frame {
 			edgeBtn.setBackground(new Color(26, 102, 255));
 			edgeBtn.setForeground(Color.WHITE);
 			setWhiteExcept(edgeBtn);
-		}else if (string.equals("calculate")) {
+		} else if (string.equals("calculate")) {
 			calculateBtn.setBackground(new Color(26, 102, 255));
 			calculateBtn.setForeground(Color.WHITE);
 			setWhiteExcept(calculateBtn);
-		}else if (string.equals("Hint")) {
+		} else if (string.equals("Hint")) {
 			hintBtn.setBackground(new Color(26, 102, 255));
 			hintBtn.setForeground(Color.WHITE);
 			setWhiteExcept(hintBtn);
-		}else if (string.equals("clear")) {
+		} else if (string.equals("clear")) {
 			clearBtn.setBackground(new Color(26, 102, 255));
 			clearBtn.setForeground(Color.WHITE);
 			setWhiteExcept(clearBtn);
 		}
-		
 
 	}
 
 	private void setWhiteExcept(JButton exceptionBtn) {
 		Iterator<JButton> itr = buttons.iterator();
-		while(itr.hasNext()){
+		while (itr.hasNext()) {
 			JButton btn = itr.next();
-			if(btn!=exceptionBtn){
-			btn.setBackground(Color.WHITE);
-			btn.setForeground(new Color(26, 102, 255));
+			if (btn != exceptionBtn) {
+				btn.setBackground(Color.WHITE);
+				btn.setForeground(new Color(26, 102, 255));
+			}
 		}
-		}
-		
+
 	}
 
 }

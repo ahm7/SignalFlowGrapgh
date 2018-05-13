@@ -27,6 +27,7 @@ public class Controller {
 	Node first, second;
 	double gain;
 
+	@SuppressWarnings("static-access")
 	public Controller(Frame frame) {
 		this.frame = frame;
 		drawingEngine = new DrawingEngine();
