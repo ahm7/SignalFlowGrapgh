@@ -2,12 +2,15 @@ package controller;
 
 import gui.DrawingEngine;
 import gui.Frame;
+
 import java.awt.Point;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 
 import model.Edge;
 import model.Node;
@@ -40,7 +43,7 @@ public class Controller {
 			frame.selected("edge");
 		} else if (e.getSource() == frame.calculateBtn) {
 			Mason mason = new Mason(nodesList,edgesList);
-			System.out.println(mason.getResult());
+			showResult(mason);
 			frame.selected("calculate");
 		}else if (e.getSource() == frame.hintBtn) {
 			frame.selected("Hint");
@@ -50,6 +53,11 @@ public class Controller {
 			clear();
 		}
 
+	}
+
+	private void showResult(Mason mason) {
+		frame.reaultArea.setText(mason.getDetailedResult()+"<br/>Final Result"+mason.getResult());
+				
 	}
 
 	private void clear() {
@@ -68,7 +76,7 @@ public class Controller {
 	}
 
 	private  void hint(int numOfNodes) {
-		int delta =(900/numOfNodes),x=50,y=300;
+		int delta =150,x=50,y=500;
 		for(int i=0;i<numOfNodes;i++){
 			Node node = new Node(i, x, y);
 			x+=delta;
@@ -76,22 +84,18 @@ public class Controller {
 			nodeIndex++;
 			drawingEngine.refresh(nodesList, edgesList, frame.drawArea);
 		}
-//		for(int i=0;i<nodesList.size()-1;i++){
-//			Edge edge = new Edge(nodesList.get(i), nodesList.get(i+1), 0);
-//			edgesList.add(edge);
-//			drawingEngine.refresh(nodesList, edgesList, frame.drawArea);
-//		}
+
 		
 	}
 
-	private  void print() {
-		for (Edge edge : edgesList)
-			System.out.println(edge.getFirstNode().getId() + " "
-					+ edge.getValue() + " " + edge.getSecondNode().getId());
-		System.out.println();
-		for (Node node : nodesList)
-			System.out.println(node.getId());
-	}
+//	private  void print() {
+//		for (Edge edge : edgesList)
+//			System.out.println(edge.getFirstNode().getId() + " "
+//					+ edge.getValue() + " " + edge.getSecondNode().getId());
+//		System.out.println();
+//		for (Node node : nodesList)
+//			System.out.println(node.getId());
+//	}
 	public void actionOnSelect(MouseEvent e) {
 		if (shape.equals("node")) {
 			Point point = e.getPoint();
@@ -125,7 +129,19 @@ public class Controller {
 				}
 			} else {
 				// show message not involving node
-				System.out.println("not involving node" + point);
+				//System.out.println("not involving node" + point);
+				frame.errorMessage.setText("error message : Not involving node...");
+				
+				Timer t = new Timer(2000, new ActionListener() {
+
+		            @Override
+		            public void actionPerformed(ActionEvent e) {
+		            	frame.errorMessage.setText("");
+		            }
+		        });
+		        t.setRepeats(false);
+		        t.start();
+				
 			}
 
 		}

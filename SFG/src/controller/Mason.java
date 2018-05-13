@@ -100,5 +100,18 @@ public class Mason {
 		return numerator;
 		
 	}
+	public String getDetailedResult(){
+		String loops="<html>Loops :<br/>";
+		ArrayList<String> array =findingloops.getPathsInListOfString();
+		for(int i=0;i<array.size();i++){
+		loops+=	array.get(i)+"<br/>";
+		}
+		array=nonTouchingLoops.getLoopsInListOfString();
+		for(int i=0;i<array.size();i++){
+			loops+=	array.get(i)+"<br/>";
+		}
+		loops+="</html>";
+		return loops;
+	}
 
 }

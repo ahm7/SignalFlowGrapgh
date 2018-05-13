@@ -8,7 +8,7 @@ import java.awt.geom.QuadCurve2D;
 
 public enum Arrow {;
 
-  public static void draw (final Graphics2D gfx, final Point2D start, final Point2D end, final Stroke lineStroke, final Stroke arrowStroke, final float arrowSize, QuadCurve2D q) {
+  public static void draw (final Graphics2D gfx, final Point2D start, final Point2D end, final Stroke lineStroke, final Stroke arrowStroke, final float arrowSize) {
 
     final double startx = start.getX();
     final double starty = start.getY();
@@ -43,7 +43,7 @@ public enum Arrow {;
     gfx.fill(polygon);
 
     gfx.setStroke(lineStroke);
-   gfx.draw(q);
+  
    // gfx.drawLine((int) startx, (int) starty, (int) (end.getX() + cx), (int) (end.getY() + cy));
   }
 
