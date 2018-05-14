@@ -55,23 +55,26 @@ public class Frame {
 
 		buttons = new ArrayList<>();
 		nodeBtn = new JButton("node");
+		nodeBtn.setForeground(new Color(26, 102, 255));
 		nodeBtn.setBackground(Color.WHITE);
 		buttons.add(nodeBtn);
 		edgeBtn = new JButton("edge");
+		edgeBtn.setForeground(new Color(26, 102, 255));
 		edgeBtn.setBackground(Color.WHITE);
 		buttons.add(edgeBtn);
 		calculateBtn = new JButton("calculate");
+		calculateBtn.setForeground(new Color(26, 102, 255));
 		calculateBtn.setBackground(Color.WHITE);
 		buttons.add(calculateBtn);
 		hintBtn = new JButton("Hint");
+		hintBtn.setForeground(new Color(26, 102, 255));
 		hintBtn.setBackground(Color.WHITE);
 		buttons.add(hintBtn);
 		clearBtn = new JButton("Clear");
+		clearBtn.setForeground(new Color(26, 102, 255));
 		clearBtn.setBackground(Color.WHITE);
 		buttons.add(clearBtn);
 		errorMessage = new JLabel();
-		errorMessage.setBackground(Color.cyan);
-		errorMessage.setForeground(Color.red);
 		toolPanel.add(errorMessage);
 		toolPanel.add(nodeBtn);
 		toolPanel.add(edgeBtn);
