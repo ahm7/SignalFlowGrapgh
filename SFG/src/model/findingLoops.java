@@ -301,7 +301,7 @@ public  ArrayList<String>getLoopsInListOfString(){
 		String thisLoop="L" ;
 		thisLoop+= i+1;
 		thisLoop+= " = ";
-		for(int j=0; j < loops.get(i).getLoop().size(); j++){
+		for(int j=loops.get(i).getLoop().size()-1; j >=0; j--){
 			thisLoop+= loops.get(i).getLoop().get(j).getId()+1;
 		}
 		
@@ -322,7 +322,7 @@ public  ArrayList<String>getPathsInListOfString(){
 		String thisLoop="p" ;
 		thisLoop+= i+1;
 		thisLoop+= " = ";
-		for(int j=0; j < paths.get(i).getpath().size(); j++){
+		for(int j=paths.get(i).getpath().size()-1; j >=0; j--){
 			thisLoop+= paths.get(i).getpath().get(j).getId()+1;
 		}
 		
